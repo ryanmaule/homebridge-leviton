@@ -143,7 +143,7 @@ class LevitonDecoraSmartPlatform {
     try {
       const res = await Leviton.getIotSwitch({ switchID: device.id, token })
       this.log.debug(`onGetPower: ${device.name} ${res.power}`)
-      service.getCharacteristic(Characteristic.On).updateValue(res.power === 'ON')
+      service.getCharacteristic(this.api.hap.Characteristic.On).updateValue(res.power === 'ON')
       return res.power === 'ON'
     } catch (err) {
       this.log.error(`onGetPower error: ${err.message}`)
@@ -156,7 +156,7 @@ class LevitonDecoraSmartPlatform {
     try {
       const res = await Leviton.putIotSwitch({ switchID: device.id, power: value ? 'ON' : 'OFF', token })
       this.log.info(`onSetPower: ${device.name} ${res.power}`)
-      service.getCharacteristic(Characteristic.On).updateValue(res.power === 'ON')
+      service.getCharacteristic(this.api.hap.Characteristic.On).updateValue(res.power === 'ON')
     } catch (err) {
       this.log.error(`onSetPower error: ${err.message}`)
       throw err
@@ -168,7 +168,7 @@ class LevitonDecoraSmartPlatform {
     try {
       const res = await Leviton.getIotSwitch({ switchID: device.id, token })
       this.log.debug(`onGetBrightness: ${device.name} @ ${res.brightness}%`)
-      service.getCharacteristic(Characteristic.Brightness).updateValue(res.brightness)
+      service.getCharacteristic(this.api.hap.Characteristic.Brightness).updateValue(res.brightness)
       return res.brightness
     } catch (err) {
       this.log.error(`onGetBrightness error: ${err.message}`)
@@ -181,7 +181,7 @@ class LevitonDecoraSmartPlatform {
     try {
       const res = await Leviton.putIotSwitch({ switchID: device.id, brightness, token })
       this.log.info(`onSetBrightness: ${device.name} @ ${res.brightness}%`)
-      service.getCharacteristic(Characteristic.Brightness).updateValue(res.brightness)
+      service.getCharacteristic(this.api.hap.Characteristic.Brightness).updateValue(res.brightness)
     } catch (err) {
       this.log.error(`onSetBrightness error: ${err.message}`)
       throw err
@@ -197,7 +197,7 @@ class LevitonDecoraSmartPlatform {
       })
         .then((res) => {
           this.log.debug(`onGetRotationSpeed: ${device.name} @ ${res.brightness}%`)
-          service.getCharacteristic(Characteristic.RotationSpeed).updateValue(res.brightness)
+          service.getCharacteristic(this.api.hap.Characteristic.RotationSpeed).updateValue(res.brightness)
           return res.brightness
         })
     } catch (err) {
@@ -216,7 +216,7 @@ class LevitonDecoraSmartPlatform {
       })
         .then((res) => {
           this.log.info(`onSetRotationSpeed: ${device.name} @ ${res.brightness}%`) // Assuming res contains updated brightness
-          service.getCharacteristic(Characteristic.RotationSpeed).updateValue(res.brightness) // Update characteristic with the response value
+          service.getCharacteristic(this.api.hap.Characteristic.RotationSpeed).updateValue(res.brightness) // Update characteristic with the response value
         })
     } catch (err) {
       this.log.error(`onSetRotationSpeed error: ${err.message}`)
@@ -235,11 +235,11 @@ class LevitonDecoraSmartPlatform {
     // save device info to AccessoryInformation service (which always exists?)
     accessory
       .getService(this.api.hap.Service.AccessoryInformation)
-      .setCharacteristic(Characteristic.Name, device.name)
-      .setCharacteristic(Characteristic.SerialNumber, device.serial)
-      .setCharacteristic(Characteristic.Manufacturer, device.manufacturer)
-      .setCharacteristic(Characteristic.Model, device.model)
-      .setCharacteristic(Characteristic.FirmwareRevision, device.version)
+      .setCharacteristic(this.api.hap.Characteristic.Name, device.name)
+      .setCharacteristic(this.api.hap.Characteristic.SerialNumber, device.serial)
+      .setCharacteristic(this.api.hap.Characteristic.Manufacturer, device.manufacturer)
+      .setCharacteristic(this.api.hap.Characteristic.Model, device.model)
+      .setCharacteristic(this.api.hap.Characteristic.FirmwareRevision, device.version)
     // setupService adds services, characteristics and getters/setters
     this.setupService(accessory)
     // add configured accessory
@@ -387,7 +387,7 @@ class LevitonDecoraSmartPlatform {
 
     // set handlers for brightness, set initial value and min/max bounds
     service
-      .getCharacteristic(Characteristic.RotationSpeed)
+      .getCharacteristic(this.api.hap.Characteristic.RotationSpeed)
       .on('get', this.onGetRotationSpeed(service, device, token).bind(this))
       .on('set', (value, callback) => this.onSetRotationSpeed(service, device, token, value).then(() => callback(), callback))
       .setProps({ // RotationSpeed characteristic has different props
