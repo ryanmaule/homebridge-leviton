@@ -3,5 +3,7 @@
     "AAFNBWV",
     "DWVAA",
     "permessage"
-  ]
+  ],
+  "IDX.aI.enableInlineCompletion": true,
+  "IDX.aI.enableCodebaseIndexing": true
 }
