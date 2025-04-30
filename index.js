@@ -2,6 +2,7 @@ const Leviton = require('./api.js')
 const LevitonAccessory = require('./levitonAccessory.js')
 const levels = ['debug', 'info', 'warn', 'error']
 const PLUGIN_NAME = 'homebridge-leviton';
+const PLATFORM_NAME = 'LevitonDecoraSmart';
 
 class LevitonDecoraSmartPlatform {
   constructor(log, config, api) {
