@@ -1,6 +1,7 @@
 {
   "pluginAlias": "LevitonDecoraSmart",
   "pluginType": "platform",
+  "pluginIcon": "./assets/homebridge-leviton.png",
   "singular": false,
   "schema": {
     "type": "object",
