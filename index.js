@@ -313,10 +313,9 @@ class LevitonDecoraSmartPlatform {
 
     // add handlers for on/off characteristic, set initial value
     service
-      .getCharacteristic(this.api.hap.Characteristic.On)
-      .on('get', this.onGetPower(service, device, token).bind(this))
+      .getCharacteristic(this.api.hap.Characteristic.On).on('get', this.onGetPower.bind(this, service, device, token))
       .on('set', (value, callback) => this.onSetPower(service, device, token, value).then(() => callback(), callback))
-      .on('set', this.onSetPower(service, device, token).bind(this))
+      //.on('set', this.onSetPower(service, device, token).bind(this))
       .updateValue(status.power === 'ON' ? true : false)
   }
 
@@ -333,10 +332,9 @@ class LevitonDecoraSmartPlatform {
 
     // add handlers for on/off characteristic, set initial value
     service
-      .getCharacteristic(this.api.hap.Characteristic.On)
-      .on('get', this.onGetPower(service, device, token).bind(this))
+      .getCharacteristic(this.api.hap.Characteristic.On).on('get', this.onGetPower.bind(this, service, device, token))
       .on('set', (value, callback) => this.onSetPower(service, device, token, value).then(() => callback(), callback))
-      .on('set', this.onSetPower(service, device, token).bind(this))
+      //.on('set', this.onSetPower(service, device, token).bind(this))
       .updateValue(status.power === 'ON' ? true : false)
   }
 
@@ -353,16 +351,14 @@ class LevitonDecoraSmartPlatform {
 
     // add handlers for on/off characteristic, set initial value
     service
-      .getCharacteristic(this.api.hap.Characteristic.On)
-      .on('get', this.onGetPower(service, device, token).bind(this))
+      .getCharacteristic(this.api.hap.Characteristic.On).on('get', this.onGetPower.bind(this, service, device, token))
       .on('set', (value, callback) => this.onSetPower(service, device, token, value).then(() => callback(), callback))
-      .on('set', this.onSetPower(service, device, token).bind(this))
+      //.on('set', this.onSetPower(service, device, token).bind(this))
       .updateValue(status.power === 'ON' ? true : false)
 
     // set handlers for brightness, set initial value and min/max bounds
     service
-      .getCharacteristic(Characteristic.Brightness)
-      .on('get', this.onGetBrightness(service, device, token).bind(this))
+      .getCharacteristic(Characteristic.Brightness).on('get', this.onGetBrightness.bind(this, service, device, token))
       .on('set', (value, callback) => this.onSetBrightness(service, device, token, value).then(() => callback(), callback))
       .setProps({
         minValue: Math.max(0, status.minLevel), // ensure minLevel is not negative
@@ -385,8 +381,7 @@ class LevitonDecoraSmartPlatform {
 
     // add handlers for on/off characteristic, set initial value
     service
-      .getCharacteristic(this.api.hap.Characteristic.On)
-      .on('get', this.onGetPower(service, device, token).bind(this))
+      .getCharacteristic(this.api.hap.Characteristic.On).on('get', this.onGetPower.bind(this, service, device, token))
       .on('set', (value, callback) => this.onSetPower(service, device, token, value).then(() => callback(), callback))
       .updateValue(status.power === 'ON' ? true : false)
 
