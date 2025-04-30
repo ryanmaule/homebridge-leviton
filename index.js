@@ -309,7 +309,7 @@ class LevitonDecoraSmartPlatform {
     const status = await this.getStatus(device, token)
 
     // get the accessory service, if not add it
-    const service = accessory.getService(this.api.hap.Service.Switch, device.name) || accessory.addService(this.api.hap.Service.Switch, device.name)
+    const service = accessory.accessory.getService(this.api.hap.Service.Switch, device.name) || accessory.accessory.addService(this.api.hap.Service.Switch, device.name)
 
     // add handlers for on/off characteristic, set initial value
     service
@@ -328,7 +328,7 @@ class LevitonDecoraSmartPlatform {
     const status = await this.getStatus(device, token)
 
     // get the accessory service, if not add it
-    const service = accessory.getService(this.api.hap.Service.Outlet, device.name) || accessory.addService(this.api.hap.Service.Outlet, device.name)
+    const service = accessory.accessory.getService(this.api.hap.Service.Outlet, device.name) || accessory.accessory.addService(this.api.hap.Service.Outlet, device.name)
 
     // add handlers for on/off characteristic, set initial value
     service
@@ -347,7 +347,7 @@ class LevitonDecoraSmartPlatform {
     const status = await this.getStatus(device, token)
 
     // get the accessory service, if not add it
-    const service = accessory.getService(this.api.hap.Service.Lightbulb, device.name) || accessory.addService(this.api.hap.Service.Lightbulb, device.name)
+    const service = accessory.accessory.getService(this.api.hap.Service.Lightbulb, device.name) || accessory.accessory.addService(this.api.hap.Service.Lightbulb, device.name)
 
     // add handlers for on/off characteristic, set initial value
     service
@@ -377,7 +377,7 @@ class LevitonDecoraSmartPlatform {
     const status = await this.getStatus(device, token)
 
     // get the accessory service, if not add it
-    const service = accessory.getService(this.api.hap.Service.Fan, device.name) || accessory.addService(this.api.hap.Service.Fan, device.name)
+    const service = accessory.accessory.getService(this.api.hap.Service.Fan, device.name) || accessory.accessory.addService(this.api.hap.Service.Fan, device.name)
 
     // add handlers for on/off characteristic, set initial value
     service
