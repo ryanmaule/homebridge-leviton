@@ -234,7 +234,7 @@ class LevitonDecoraSmartPlatform {
     // Moved to LevitonAccessory class
     // save device info to AccessoryInformation service (which always exists?)
     accessory
-      .getService(Service.AccessoryInformation)
+      .getService(this.api.hap.Service.AccessoryInformation)
       .setCharacteristic(Characteristic.Name, device.name)
       .setCharacteristic(Characteristic.SerialNumber, device.serial)
       .setCharacteristic(Characteristic.Manufacturer, device.manufacturer)
