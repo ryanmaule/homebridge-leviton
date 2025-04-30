@@ -1,6 +1,8 @@
 # homebridge-leviton
 
 [![verified-by-homebridge](https://badgen.net/badge/homebridge/verified/purple)](https://github.com/homebridge/homebridge/wiki/Verified-Plugins)
+**This is a private fork. Use at your own risk. It is currently meant for updating to Homebridge 2.0. Support is not guaranteed.**
+
 Homebridge plugin for Leviton Decora Smart devices
 
 ## Supports
