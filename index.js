@@ -358,7 +358,7 @@ class LevitonDecoraSmartPlatform {
 
     // set handlers for brightness, set initial value and min/max bounds
     service
-      .getCharacteristic(Characteristic.Brightness).on('get', this.onGetBrightness.bind(this, service, device, token))
+      .getCharacteristic(this.api.hap.Characteristic.Brightness).on('get', this.onGetBrightness.bind(this, service, device, token))
       .on('set', (value, callback) => this.onSetBrightness(service, device, token, value).then(() => callback(), callback))
       .setProps({
         minValue: Math.max(0, status.minLevel), // ensure minLevel is not negative
@@ -389,7 +389,7 @@ class LevitonDecoraSmartPlatform {
     service
       .getCharacteristic(Characteristic.RotationSpeed)
       .on('get', this.onGetRotationSpeed(service, device, token).bind(this))
-      .on('set', this.onSetRotationSpeed(service, device, token).bind(this))
+      .on('set', (value, callback) => this.onSetRotationSpeed(service, device, token, value).then(() => callback(), callback))
       .setProps({ // RotationSpeed characteristic has different props
         minValue: 0,
         maxValue: status.maxLevel,
