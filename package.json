@@ -1,5 +1,5 @@
 {
-  "name": "homebridge-leviton",
+  "name": "@thenotself/homebridge-leviton",
   "version": "3.0.0",
   "description": "A homebridge plugin for Leviton Decora Smart devices",
   "main": "index.js",
