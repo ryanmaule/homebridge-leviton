@@ -41,14 +41,16 @@ class LevitonDecoraSmartPlatform { // Remove export
     this.initialize().then(({ devices, token }) => {
       const excludedModels = (config.excludeModels || []).map(name => name.toUpperCase());
       const excludedSerials = (config.excludeSerials || []).map(name => name.toUpperCase());
+
       if (Array.isArray(devices) && devices.length > 0) {
         devices.forEach((device) => {
-          if (!excludedModels.includes(device.model) && !excludedSerials.includes(device.serial)) {
+          if (!this.accessories.find(acc => acc.accessory.uuid === this.api.hap.uuid.generate(device.serial))) {
+            if (!excludedModels.includes(device.model) && !excludedSerials.includes(device.serial)) {
               this.addAccessory(device, token);
-          } else {
-              this.log.debug(`Device ${device.name} was excluded.`)
-          });
-        } else {
+            }
+          }
+        });
+      } else {
           this.log.error('Unable to initialize: no devices found');
         }
       })
