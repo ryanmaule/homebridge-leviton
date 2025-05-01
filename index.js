@@ -365,7 +365,7 @@ class LevitonDecoraSmartPlatform { // Remove export
       .getCharacteristic(this.api.hap.Characteristic.Brightness).on('get', this.onGetBrightness.bind(this, service, device, token))
       .on('set', (value, callback) => this.onSetBrightness(service, device, token, value).then(() => callback(), callback))
       .setProps({
-        minValue: Math.max(0, status.minLevel), // ensure minLevel is not negative
+        minValue: Math.max(10, status.minLevel), // Ensure minLevel is at least 10
         maxValue: status.maxLevel,
         minStep: 1,
       })
