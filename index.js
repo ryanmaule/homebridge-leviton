@@ -250,10 +250,14 @@ class LevitonDecoraSmartPlatform {
   async configureAccessory(accessory) {
     const device = accessory.context.device
     const token = accessory.context.token
-    const status = await this.getStatus(device, token)
-    this.log.debug(`configureAccessory: ${accessory.displayName}`)
-    this.setupService(accessory)
-    this.accessories.push(accessory)
+    const status = await this.getStatus(device, token);
+    this.log.debug(`configureAccessory: ${accessory.displayName}`);
+
+    // Create a new LevitonAccessory instance from the cached data
+    const levitonAccessory = new LevitonAccessory(device, token, this.log, this.api);
+    levitonAccessory.accessory = accessory; // Assign the cached Homebridge accessory to the new instance
+    this.setupService(levitonAccessory); // Pass the LevitonAccessory instance
+    this.accessories.push(levitonAccessory); // Push the LevitonAccessory instance
   }
 
   // fetch the status of a device to populate power state and brightness
