@@ -8,6 +8,7 @@ class LevitonAccessory {
     this.Characteristic = this.api.hap.Characteristic;
     this.UUID = this.api.hap.uuid;
     const uuid = this.UUID.generate(device.serial);
+    this.uuid = uuid;
     this.accessory = new this.api.platformAccessory(device.name, uuid);
 
     this.accessory.context.device = device;
